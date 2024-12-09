@@ -1,6 +1,16 @@
 import streamlit as st
 from azure.storage.filedatalake import DataLakeServiceClient
 
+
+# Configuração da página
+st.set_page_config(page_title="Upload de Arquivo para o Azure Data Lake", layout="wide")
+
+# Título da aplicação (visível acima dos outros componentes)
+st.title("Upload de Arquivo para o Azure Data Lake")
+
+st.markdown("<hr style='border-top: 3px solid #1E90FF; margin-top: 0;'>", unsafe_allow_html=True)
+
+
 # Função para conectar ao Azure Data Lake
 def connect_to_datalake(account_name, account_key):
     try:
@@ -39,14 +49,9 @@ def upload_file(service_client, container_name, file):
     except Exception as e:
         st.error(f"Erro ao enviar o arquivo: {e}")
 
-# Configuração da página
-st.set_page_config(page_title="Upload de Arquivo para o Azure Data Lake", layout="wide")
 
-# Título da aplicação (visível acima dos outros componentes)
-st.title("Upload de Arquivo para o Azure Data Lake")
-
-# Variáveis de conexão (movidas para variáveis de ambiente em produção)
-account_name = "your_name_storage"
+# Variáveis de conexão
+account_name = "your_datalake_name"
 account_key = "your_secreat"
 
 # Conectando ao Azure Data Lake
